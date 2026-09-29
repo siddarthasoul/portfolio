@@ -1,0 +1,26 @@
+services:
+  frontend:
+    image: portfolio-frontend:latest
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+
+    container_name: portfolio-frontend
+
+    ports:
+      - "3000:3000"
+
+    restart: unless-stopped
+
+    environment:
+      NODE_ENV: production
+
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge

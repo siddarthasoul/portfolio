@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: portfolio-backend:latest
+
+    container_name: portfolio-backend
+
+    restart: unless-stopped
+
+    env_file:
+      - ./.env
+
+    ports:
+      - "8000:8000"
+
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    name: portfolio-network
+    driver: bridge
