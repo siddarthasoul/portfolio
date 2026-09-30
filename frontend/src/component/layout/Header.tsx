@@ -13,7 +13,6 @@ const navigation = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [resumeOpen, setResumeOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,10 +35,9 @@ export default function Header() {
           transition-all duration-300
           sm:px-6
           lg:px-8
-          ${
-            scrolled
-              ? "pt-3"
-              : "pt-5"
+          ${scrolled
+            ? "pt-3"
+            : "pt-5"
           }
         `}
       >
@@ -50,15 +48,14 @@ export default function Header() {
             px-4 py-3
             transition-all duration-300
             sm:px-5
-            ${
-              scrolled
-                ? `
+            ${scrolled
+              ? `
                   border-white/[0.10]
                   bg-[#080b12]/75
                   shadow-[0_8px_40px_rgba(0,0,0,0.25)]
                   backdrop-blur-xl
                 `
-                : `
+              : `
                   border-transparent
                   bg-transparent
                 `
@@ -113,23 +110,6 @@ export default function Header() {
               </a>
             ))}
 
-            <button
-              type="button"
-              onClick={() => setResumeOpen(true)}
-              className="
-                rounded-lg
-                border border-cyan-300/20
-                bg-cyan-300/[0.06]
-                px-4 py-2
-                text-sm font-medium text-cyan-300
-                transition-all duration-200
-                hover:border-cyan-300/35
-                hover:bg-cyan-300/[0.10]
-                hover:text-cyan-200
-              "
-            >
-              Resume
-            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -185,36 +165,10 @@ export default function Header() {
                   {item.label}
                 </a>
               ))}
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setResumeOpen(true);
-                }}
-                className="
-                  mt-1 rounded-xl
-                  border border-cyan-300/20
-                  bg-cyan-300/[0.06]
-                  px-3 py-3
-                  text-left text-sm
-                  font-medium text-cyan-300
-                  transition
-                  hover:border-cyan-300/35
-                  hover:bg-cyan-300/[0.10]
-                "
-              >
-                Resume
-              </button>
             </nav>
           </div>
         )}
       </header>
-
-      <ResumeModal
-        open={resumeOpen}
-        onClose={() => setResumeOpen(false)}
-      />
     </>
   );
 }
